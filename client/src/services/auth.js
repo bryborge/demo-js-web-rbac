@@ -25,10 +25,23 @@ export const login = async (username, password) => {
     });
 }
 
+/**
+ * Logs out the current user by removing the user data from local storage.
+ *
+ * @return {void}
+ */
 export const logout = () => {
   localStorage.removeItem('user');
 }
 
+/**
+ * Registers a new user with the given username, password, and role.
+ *
+ * @param {string} username The username to register with.
+ * @param {string} password The password to register with.
+ * @param {string} role The role to register with. Can be `user`, `admin`, or `editor`.
+ * @return {Promise} A promise that resolves to the newly created user object.
+ */
 export const register = async (username, password, role) => {
   return await axios.post(`${API_URL}/register`, { username, password, role });
 }
