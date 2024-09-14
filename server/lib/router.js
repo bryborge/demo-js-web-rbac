@@ -12,7 +12,7 @@ const router = express.Router();
  * GET / - Base API endpoint
  */
 router.get('/', (_req, res) => {
-  res.status(200).json({ message: 'Welcome to the RBAC Tutorial! This is the server.' });
+  res.status(200).json({ message: 'Welcome to the RBAC Demo! This is the server.' });
 });
 
 /**

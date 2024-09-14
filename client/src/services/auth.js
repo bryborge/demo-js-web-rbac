@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000'; // In a production app, this should be an environment variable
+const API_URL = 'http://localhost:4000/api'; // In a production app, this should be an environment variable
 
 
 /**
@@ -14,7 +14,7 @@ const API_URL = 'http://localhost:4000'; // In a production app, this should be 
  * @return {Promise} A promise that resolves to an object with a `token` property.
  */
 export const login = async (username, password) => {
-  return await axios.post(`${API_URL}/api/login`, { username, password })
+  return await axios.post(`${API_URL}/login`, { username, password })
     .then((response) => {
       if (response.data.token) {
         // Save user data in local storage
@@ -27,6 +27,10 @@ export const login = async (username, password) => {
 
 export const logout = () => {
   localStorage.removeItem('user');
+}
+
+export const register = async (username, password, role) => {
+  return await axios.post(`${API_URL}/register`, { username, password, role });
 }
 
 /**

@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../services/auth';
 
+  /**
+   * A component that handles user login.
+   *
+   * State variables:
+   * - `username`: The username to log in with.
+   * - `password`: The password to log in with.
+   * - `error`: Any error encountered during login.
+   *
+   * The component renders a form with username and password fields.
+   * When the form is submitted, the `handleSubmit` function is called,
+   * which attempts to log in the user with the given credentials.
+   * If the login is successful, the user is redirected to the dashboard.
+   * If the login fails, an error message is displayed.
+   *
+   * The component also renders an error message if the `error` state
+   * variable is not null.
+   */
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -19,8 +36,8 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -37,7 +54,11 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       {error && <p>{error}</p>}
-    </div>
+
+      <p>
+        Don't have an account? <Link to="/register">Register here</Link>
+      </p>
+    </>
   )
 }
 
