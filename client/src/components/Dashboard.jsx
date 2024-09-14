@@ -29,6 +29,16 @@ const Dashboard = () => {
 
   if (!user) return null;
 
+  /**
+   * Navigates to the admin dashboard.
+   */
+  const handleAdminNavigate = () => {
+    navigate('/admin');
+  }
+
+  /**
+   * Logs out the current user and redirects to the login page.
+   */
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -37,8 +47,8 @@ const Dashboard = () => {
   return (
     <div className="container">
       <h2>Dashboard</h2>
-      <h3>Welcome, { user.username }</h3>
-      <p>Your role is: { user.role }</p>
+      <p>Welcome, { user.username }. Your role is: { user.role }</p>
+      { user.role === 'admin' && <button onClick={handleAdminNavigate}>Admin Dashboard</button> }
       <button onClick={handleLogout}>Logout</button>
     </div>
   )

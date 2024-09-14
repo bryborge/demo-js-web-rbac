@@ -36,6 +36,9 @@ router.post('/register', async (req, res) => {
   }
 });
 
+/**
+ * POST /login - Login a user
+ */
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -52,6 +55,21 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ message: `Error logging in: ${error.message}` });
+  }
+});
+
+router.get('/users', async (req, res) => {
+  const { user } = req.body;
+
+  if (user.role !== 'admin') {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: `Error getting users: ${error.message}` });
   }
 });
 

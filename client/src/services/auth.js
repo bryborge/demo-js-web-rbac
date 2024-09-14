@@ -55,3 +55,13 @@ export const register = async (username, password, role) => {
 export const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem('user'));
 }
+
+/**
+ * Gets all users from the server.
+ *
+ * @return {Promise} A promise that resolves to an array of user objects.
+ */
+export const getAllUsers = async () => {
+  const response = await axios.get(`${API_URL}/users`);
+  return response.data;
+}

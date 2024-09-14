@@ -3,6 +3,8 @@ import './App.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Register from './components/Register';
+import ProtectedRoute from './components/ProtectedRoute';
+import Admin from './components/Admin';
 
 function App() {
   return (
@@ -14,6 +16,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>
