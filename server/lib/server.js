@@ -1,10 +1,20 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const router = require('./router');
 const app = express();
 
 // Middleware
 app.use(express.json());
+
+// Enable CORS for client-side on all routes
+// This is necessary because React is hosted on a different port.
+// Don't do this in production. ;)
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true,
+}));
 
 // MongoDB Connection
 const mongoUser = 'root';
