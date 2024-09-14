@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
 
     // Generate JWT
     // You can test the token at: https://jwt.io/
-    const token = jwt.sign({ id: user._id, role: user.role }, 'secretKey', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id, username: user.username, role: user.role }, 'secretKey', { expiresIn: '1h' });
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ message: `Error logging in: ${error.message}` });
